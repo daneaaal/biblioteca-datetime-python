@@ -1,0 +1,245 @@
+\documentclass[12pt,a4paper]{article}
+
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{setspace}
+
+\geometry{margin=2.5cm}
+\onehalfspacing
+
+\lstset{
+    language=Python,
+    basicstyle=\ttfamily\small,
+    keywordstyle=\color{blue},
+    stringstyle=\color{red},
+    commentstyle=\color{green!60!black},
+    showstringspaces=false,
+    breaklines=true
+}
+
+\begin{document}
+
+% ------------------ PORTADA ------------------
+
+\begin{titlepage}
+    \centering
+    \vspace*{2cm}
+
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.5\linewidth]{pngwing.com (9).png}
+
+        
+    \end{figure}
+    
+    {\Large \textbf{UNIVERSIDAD DISTRITAL FJDC}}\\[0.5cm]
+    {\large Facultad de Ingeniería}\\[2cm]
+    
+    \rule{\linewidth}{0.5mm} \\[0.4cm]
+    {\Huge \textbf{Biblioteca datetime en Python}}\\[0.3cm]
+    \rule{\linewidth}{0.5mm} \\[2cm]
+    
+    \textbf{Asignatura:} Probabilidad y Estadística \\[0.5cm]
+    \textbf{Docente:} Alberto Acosta Lopez \\[0.5cm]
+    \textbf{Estudiante:} Daniel Alejandro Castro Becerra\\[0.5cm]
+    \textbf{Código:} 20242020271 \\[2cm]
+    
+    \vfill
+    
+\end{titlepage}
+
+% ------------------ INDICE ------------------
+
+\tableofcontents
+\newpage
+
+% ------------------ INTRODUCCION ------------------
+
+\section{Introducción}
+
+La biblioteca \texttt{datetime} es un módulo estándar de Python que permite manipular fechas y horas de manera eficiente. 
+Es una herramienta fundamental en el desarrollo de software moderno, ya que prácticamente todos los sistemas informáticos dependen del manejo correcto del tiempo.
+
+Desde sistemas bancarios hasta plataformas educativas, el control preciso de fechas y horas garantiza la integridad de los datos y la correcta ejecución de procesos automáticos.
+
+% ------------------ COMPONENTES ------------------
+
+\section{Componentes Principales}
+
+\subsection{Clase date}
+
+Representa una fecha específica compuesta por año, mes y día. 
+Se utiliza cuando no es necesario trabajar con información de hora.
+
+Ejemplo:
+
+\begin{lstlisting}
+from datetime import date
+
+fecha = date(2026, 5, 20)
+print(fecha)
+\end{lstlisting}
+
+\subsection{Clase time}
+
+Representa únicamente la hora (hora, minutos, segundos y microsegundos).
+
+\begin{lstlisting}
+from datetime import time
+
+hora = time(14, 30, 0)
+print(hora)
+\end{lstlisting}
+
+\subsection{Clase datetime}
+
+Combina fecha y hora en un solo objeto. Es la clase más utilizada.
+
+\begin{lstlisting}
+from datetime import datetime
+
+ahora = datetime.now()
+print(ahora)
+\end{lstlisting}
+
+\subsection{Clase timedelta}
+
+Permite realizar operaciones matemáticas con fechas y horas.
+
+\begin{lstlisting}
+from datetime import datetime, timedelta
+
+hoy = datetime.now()
+manana = hoy + timedelta(days=1)
+
+print("Hoy:", hoy)
+print("Mañana:", manana)
+\end{lstlisting}
+
+% ------------------ FUNCIONES IMPORTANTES ------------------
+
+\section{Funciones Principales}
+
+\subsection{datetime.now()}
+
+Devuelve la fecha y hora actual del sistema.
+
+\subsection{strftime()}
+
+Convierte un objeto datetime en una cadena de texto con formato específico.
+
+\begin{lstlisting}
+from datetime import datetime
+
+ahora = datetime.now()
+formato = ahora.strftime("%d/%m/%Y %H:%M")
+print(formato)
+\end{lstlisting}
+
+\subsection{strptime()}
+
+Convierte una cadena de texto en un objeto datetime.
+
+\begin{lstlisting}
+from datetime import datetime
+
+texto = "25/12/2026"
+fecha = datetime.strptime(texto, "%d/%m/%Y")
+print(fecha)
+\end{lstlisting}
+
+% ------------------ EJEMPLO PRACTICO COMPLETO ------------------
+
+\section{Ejemplo Práctico Completo}
+
+Supongamos que queremos calcular cuántos días faltan para finalizar el año.
+
+\begin{lstlisting}
+from datetime import datetime
+
+hoy = datetime.now()
+fin_ano = datetime(hoy.year, 12, 31)
+
+diferencia = fin_ano - hoy
+
+print("Hoy es:", hoy.strftime("%d/%m/%Y"))
+print("Faltan", diferencia.days, "días para finalizar el año.")
+\end{lstlisting}
+
+Este tipo de cálculo es común en aplicaciones financieras, sistemas de planificación y gestión empresarial.
+
+% ------------------ IMPORTANCIA ------------------
+
+\section{Importancia en Sistemas Reales}
+
+El manejo adecuado del tiempo es esencial en:
+
+\begin{itemize}
+    \item Sistemas bancarios para registrar pagos e intereses.
+    \item Plataformas educativas para fechas de entrega.
+    \item Sistemas empresariales para auditoría y control.
+    \item Automatización de procesos programados.
+\end{itemize}
+
+Un error en el manejo de fechas puede generar pérdidas económicas, inconsistencias de datos o fallos en procesos críticos.
+
+% ------------------ PROBLEMAS COMUNES ------------------
+
+\section{Problemas Comunes}
+
+\begin{itemize}
+    \item Confusión entre formatos de fecha (DD/MM/AAAA vs MM/DD/AAAA).
+    \item Diferencias de zonas horarias.
+    \item Manejo incorrecto de años bisiestos.
+    \item Falta de validación en datos ingresados por el usuario.
+\end{itemize}
+
+% ------------------ BUENAS PRACTICAS ------------------
+
+\section{Buenas Prácticas}
+
+\begin{itemize}
+    \item Definir un formato estándar para fechas.
+    \item Validar datos de entrada.
+    \item Considerar el uso de UTC en sistemas distribuidos.
+    \item Documentar el formato utilizado en bases de datos.
+\end{itemize}
+
+% ------------------ CONCLUSIONES ------------------
+
+\section{Conclusiones}
+
+La biblioteca datetime es una herramienta esencial en el desarrollo de software. 
+Permite gestionar fechas y horas de manera precisa, facilitando la creación de sistemas confiables y automatizados.
+
+Su correcta implementación reduce errores, mejora la integridad de los datos y garantiza el funcionamiento adecuado de aplicaciones críticas.
+
+% ------------------ BIBLIOGRAFIA ------------------
+
+\section{Bibliografía}
+
+\begin{itemize}
+
+\item Python Software Foundation. (s. f.). 
+\textit{datetime - Basic date and time types}. 
+Python Documentation. 
+Disponible en: https://docs.python.org/3/library/datetime.html
+
+\item Aprende con Alf. (s. f.). 
+\textit{La libreria datetime}. 
+Disponible en: https://aprendeconalf.es/docencia/python/manual/datetime/
+
+\item Ortiz Ordonez, J. (2019, septiembre 13). 
+\textit{Python - Ejercicio 3: Obtener la fecha y hora actuales del sistema con el modulo datetime} [Video]. 
+YouTube. 
+Disponible en: https://www.youtube.com/watch?v=WxQrV_aIXaE
+
+\end{itemize}
+
+\end{document}
