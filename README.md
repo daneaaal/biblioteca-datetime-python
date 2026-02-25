@@ -1,6 +1,6 @@
 # Biblioteca datetime en Python
 
-Trabajo académico sobre la biblioteca `datetime` de Python.
+Trabajo sobre la biblioteca `datetime` de Python.
 
 Incluye:
 
